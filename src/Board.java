@@ -186,6 +186,7 @@ public class Board extends JPanel implements ActionListener {
 
             if ((z > 4) && (snakeX[0] == snakeX[z]) && (snakeY[0] == snakeY[z])) {
                 inGame = false;
+                break;
             }
         }
 
@@ -269,14 +270,16 @@ public class Board extends JPanel implements ActionListener {
                 if (DELAY > 150) { //Check to make sure speed cannot go lower than 150
                     DELAY = 150;
                 }
-                if (key == KeyEvent.VK_ADD) {
-                    timer.setDelay(DELAY -= 10);
-                    if (DELAY < 20) { //Check to make sure speed cannot go higher than 20
-                        DELAY = 20;
-                    }
-                }
+            }
+            if (key != KeyEvent.VK_ADD) {
+                return;
+            }
+            timer.setDelay(DELAY -= 10);
+            if (DELAY < 20) { //Check to make sure speed cannot go higher than 20
+                DELAY = 20;
             }
         }
     }
 }
+
 
